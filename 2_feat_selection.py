@@ -22,7 +22,7 @@ class FeatureSelector():
 		self.data_dir = 'data/prep_orig_data/'
 		self.method = method
 		self.feat_limit = feat_limit
-		self.verbose = 1
+		self.verbose = 5
 
 		self.name = 'feat_sel_%s'%(method)
 		self.model_save_path = 'models/%s.pkl'%(self.name)
