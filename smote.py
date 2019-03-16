@@ -10,9 +10,8 @@ def upsample(feat):
     smt = SMOTE(sampling_strategy = 0.6)#(sampling_strategy = 0.4, categorical_features=[1])
     X_train, y_train = smt.fit_sample(X, y['failure'].ravel())
     print(np.unique(y_train,return_counts=True))
-    X.to_csv('%ssmote_train_%s_X.csv'%(dir,feat),index=False)
-    y.to_csv('%ssmote_train_%s_y.csv'%(dir,feat),index=False)
-    
+    np.savetxt('%ssmote_train_%s_X.csv'%(dir,feat), X_train, delimiter=",")
+    np.savetxt('%ssmote_train_%s_y.csv'%(dir,feat),y_train, delimiter=",")
 
 upsample('for')
 upsample('seq_bwd')
