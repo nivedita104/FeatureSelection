@@ -15,7 +15,7 @@ def SVM_CV(X_train, X_test, y_train, y_test):
     print('Best Gamma:', clf.best_estimator_.gamma)
     y_true, y_pred = y_test, clf.predict(X_test)
     print(classification_report(y_true, y_pred))
-
+    show_confusion_matrix(y_true, y_pred)
 
 X_train, X_test, y_train, y_test = load_data()
 print(X_train.shape)

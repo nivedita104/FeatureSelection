@@ -1,10 +1,6 @@
-from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 from sklearn import tree
-from matplotlib import pyplot as plt
-import seaborn as sns
-from sklearn.metrics import classification_report, confusion_matrix
-import pandas as pd
+from sklearn.metrics import classification_report
 from bestModel import load_data, show_confusion_matrix
 import sys
 
@@ -17,6 +13,7 @@ def decision_tree(X_train, X_test, y_train, y_test, viz=False):
                          'max_features':range(1,X_train.shape[1])}
     clf = GridSearchCV(estimator=tree.DecisionTreeClassifier(), param_grid=tuning_parameters, n_jobs=-1, cv=7)
     clf.fit(X_train, y_train)
+    print('******** Decision Tree *******')
     print('Best score for data:', clf.best_score_)
     print('Best value for min samples to split:', clf.best_estimator_.min_samples_split)
     print('Best max depth value:', clf.best_estimator_.max_depth)
