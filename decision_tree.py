@@ -48,6 +48,7 @@ optimized_decision_tree = decision_tree(X_train, X_test, y_train, y_test)
 # In[]
 
 '''
+******** Decision Tree *******
 Best score for data: 0.9880074620236298
 Best value for min samples to split: 10
 Best max depth value: 7
