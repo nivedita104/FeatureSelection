@@ -14,7 +14,7 @@ def load_data():
     X_train, X_test, y_train, y_test = train_test_split(X, y['failure'].ravel(), test_size=0.3, random_state=0)
     test_X = pd.read_csv('%stest_for_X.csv' % (dir))
     test_y = pd.read_csv('%stest_y.csv' % (dir))
-    return X_train, X_test, y_train, y_test
+    return X_train, test_X, y_train, test_y
 
 def show_confusion_matrix(validations, predictions):
 
