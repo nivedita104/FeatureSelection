@@ -5,16 +5,25 @@ from matplotlib import pyplot as plt
 import seaborn as sns
 from sklearn.metrics import classification_report, confusion_matrix
 import pandas as pd
+import numpy as np
 
 
 def load_data():
-    dir = 'data/prep_featurizer/'
-    X = pd.read_csv('%ssmote_train_for_X.csv' % (dir))
-    y = pd.read_csv('%ssmote_train_for_y.csv' % (dir))
-    X_train, X_test, y_train, y_test = train_test_split(X, y['failure'].ravel(), test_size=0.3, random_state=0)
-    test_X = pd.read_csv('%stest_for_X.csv' % (dir))
+    dir = 'data/time_rolled_5_days/prep_data/'
+    X_train = pd.read_csv('%strain_X.csv' % (dir))
+    y_train = pd.read_csv('%strain_y.csv' % (dir))
+    X_val = pd.read_csv('%svalid_X.csv' % (dir))
+    y_val = pd.read_csv('%svalid_y.csv' % (dir))
+    test_X = pd.read_csv('%stest_X.csv' % (dir))
     test_y = pd.read_csv('%stest_y.csv' % (dir))
-    return X_train, X_test, y_train, y_test
+
+    X_test_set=X_val
+    y_test_set=y_val
+    X_train.drop(labels=['serial_number'],inplace=True,axis=1)
+    X_test_set.drop(labels=['serial_number'], inplace=True,axis=1)
+    y_train=np.array(y_train.values).reshape(-1,)
+    y_test_set = np.array(y_test_set.values).reshape(-1,)
+    return X_train, X_test_set, y_train, y_test_set
 
 def show_confusion_matrix(validations, predictions):
 
