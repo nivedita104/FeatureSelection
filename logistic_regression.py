@@ -7,7 +7,7 @@ import sys
 
 # In[]
 
-def logistic_reg(X_train, X_test, y_train, y_test, viz=False):
+def logistic_reg(X_train, X_test, y_train, y_test):
     tuning_parameters = {'penalty': ["l2"],
                          'class_weight': ['balanced'],
                          'random_state': [42],
@@ -25,18 +25,6 @@ def logistic_reg(X_train, X_test, y_train, y_test, viz=False):
     y_true, y_pred = y_test, clf.predict(X_test)
     print(classification_report(y_true, y_pred))
     show_confusion_matrix(y_true, y_pred)
-    if viz:
-        from sklearn.externals.six import StringIO
-        import pydotplus
-        from IPython.display import Image
-        from sklearn.tree import export_graphviz
-        dot_data = StringIO()
-        export_graphviz(clf.best_estimator_, out_file=dot_data,
-                        class_names=["0", "1"],
-                        filled=True, rounded=True,
-                        special_characters=True)
-        graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
-        Image(graph.create_png())
 
     return clf
 
@@ -65,5 +53,22 @@ Best value for C 0.5
 weighted avg       0.98      0.95      0.96      4825
 
 
+
+'''
+
+''' TIME ROLLED 5 days
+******** Logistic regression ******
+Best score for data: 0.9286436066848037
+Best tolerance value: 0.001
+Best solver: newton-cg
+Best value for C 100
+              precision    recall  f1-score   support
+
+           0       0.99      0.94      0.96      3152
+           1       0.18      0.68      0.28        65
+
+   micro avg       0.93      0.93      0.93      3217
+   macro avg       0.59      0.81      0.62      3217
+weighted avg       0.98      0.93      0.95      3217
 
 '''

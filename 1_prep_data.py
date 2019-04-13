@@ -8,7 +8,7 @@ verbose = 1
 
 def load_orig_data(split):
 	assert split in ('train','test')
-	df = pd.read_csv('data/time_rolled_5_days/%s.csv'%(split))
+	df = pd.read_csv('data/time_rolled_5_days/balanced/%s.csv'%(split))
 	df = df.dropna()
 	X = df.loc[:, df.columns != 'failure']
 	y = df.loc[:, df.columns == 'failure']
@@ -49,6 +49,6 @@ if __name__ == '__main__':
 	# for split in ['train','test']:
 		# load_orig_data(split)
 		
-	save_csvs(target_dir='data/time_rolled_5_days/prep_data/',no_valid=False)
-	save_csvs(target_dir='data/time_rolled_5_days/prep_orig_data/',no_valid=True)
+	save_csvs(target_dir='data/time_rolled_5_days/balanced/prep_data/',no_valid=False)
+	save_csvs(target_dir='data/time_rolled_5_days/balanced/prep_orig_data/',no_valid=True)
 

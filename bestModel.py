@@ -9,17 +9,17 @@ import numpy as np
 
 
 def load_data():
-    dir = 'data/time_rolled_5_days/prep_data/'
+    dir = 'data/time_rolled_5_days/balanced/prep_orig_data/'
     X_train = pd.read_csv('%strain_X.csv' % (dir))
     y_train = pd.read_csv('%strain_y.csv' % (dir))
-    X_val = pd.read_csv('%svalid_X.csv' % (dir))
-    y_val = pd.read_csv('%svalid_y.csv' % (dir))
+    #X_val = pd.read_csv('%svalid_X.csv' % (dir))
+    #y_val = pd.read_csv('%svalid_y.csv' % (dir))
     test_X = pd.read_csv('%stest_X.csv' % (dir))
     test_y = pd.read_csv('%stest_y.csv' % (dir))
 
-    X_test_set=X_val
-    y_test_set=y_val
-    X_train.drop(labels=['serial_number'],inplace=True,axis=1)
+    X_test_set=test_X
+    y_test_set=test_y
+    #X_train.drop(labels=['serial_number'],inplace=True,axis=1)
     X_test_set.drop(labels=['serial_number'], inplace=True,axis=1)
     y_train=np.array(y_train.values).reshape(-1,)
     y_test_set = np.array(y_test_set.values).reshape(-1,)
